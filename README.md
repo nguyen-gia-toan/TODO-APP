@@ -1,4 +1,4 @@
-# Todo App Project - UIT
+# Todo App Project
 
 Trang web đơn giản để tạo Todo-list
 
