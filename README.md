@@ -3,12 +3,12 @@
 Trang web đơn giản để tạo Todo-list
 
 ## 📋 Các phiên bản
-- **Level 0**: được code bằng frontend và các dữ liệu sẽ bị mất khi tải lại trang
-- **Level 1**: Đtải lại trang sẽ không bị mất dữ liệu nhưng tắt server dữ liệu sẽ bị mất
+- **Level 0**: Được code bằng frontend và các dữ liệu sẽ bị mất khi tải lại trang
+- **Level 1**: Lưu trữ dữ liệu trong mảng tạm ở server. Tải lại trang sẽ không bị mất dữ liệu nhưng tắt server dữ liệu sẽ bị mất
 - **Level 2**: Lưu trữ dữ liệu qua file `data.json` dữ liệu sẽ không bị mất khi tải lại trang và tắt server
 - **Level 3**: Lưu trữ dữ liệu trong SQL server dữ liệu sẽ không bị mất khi tải lại trang và tắt server
 
-## 🛠 Có sử dụng
+## 🛠 sử dụng
 - **Frontend**: HTML, CSS, JavaScript.
 - **Backend**: Node.js, Express.
 - **Database**: MySQL.
