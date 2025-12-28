@@ -7,7 +7,7 @@
 			- Khi bấm vào nút xóa thì ô công việc sẽ biến mất
 	- Ban đầu em tạo ra các thành phần cơ bản của trang web trong file index
 		-
-		  
+		  ```htmlmixed
 		  <!DOCTYPE html>
 		  <html lang="vi">
 		  <head>
@@ -36,10 +36,10 @@
 		      </div>
 		  </body>
 		  </html>
-		  
+		  ```
 	- Sau đó chuyển qua code file app.js để làm phần thêm nội dung công việc
 		-
-		  
+		  ```javascript
 		  const input = document.getElementById('todo-input');
 		  const addBtn = document.getElementById('add-btn');
 		  const todoList = document.getElementById('todo-list');
@@ -102,16 +102,16 @@
 		          input.value = "";
 		      }
 		  });
-		  
+		  ```
 			- Trong quá trình code thì em có tra Gemini làm sao để tạo uuid, làm các nút thêm, tick, sửa, xóa hoạt động và học được cú pháp DOM listener, createElement, appendChild
 		- Sau đó thêm dòng này vào trong body của index
 			-
-			  
+			  ```htmlmixed
 			  <script src="app.js"></script>
-			  
+			  ```
 	- Làm thêm file style.css để app đẹp hơn
 		-
-		  css
+		  ```css
 		  body{
 		      background-color: #1f1f1f;
 		      color: #e0e0e0;
@@ -211,13 +211,13 @@
 		      font-size: 18px;
 		      margin-left: 10px;
 		  }
-		  
+		  ```
 			- Trong quá trình làm phần này thì em có tra cách để thêm dấu '✓' vào nút tick tròn khi bấm vào (::after)
 		- Và thêm dòng này vào phần head của index.html
 			-
-			  
+			  ```htmlmixed
 			  <link rel="stylesheet" href="style.css">
-			  
+			  ```
 		-
 - Level 1: In-Memory Storage
 	- Tạo thêm một file là server.js
@@ -226,17 +226,17 @@
 			-
 		- Dùng express framework để thực hiện các hành động get, put, delete, post và cho server chạy ở cổng 3000  và tạo mảng todos để lưu dữ liệu
 			-
-			  
+			  ```javascript
 			  const express = require('express');
 			  const app = express();
 			  const PORT = 3000;
 			  app.use(express.json());
 			  
 			  let todos = []; //đây là mảng dùng để lưu danh sách công việc
-			  
+			  ```
 		- Các API Put, Post, Get, Delete
 			-
-			  
+			  ```javascript
 			  //Get
 			  app.get('/api/todos', (req, res) => {
 			      res.status(200).json(todos);
@@ -298,12 +298,12 @@
 			  app.listen(PORT, () => {
 			      console.log(`Server đang chạy tại: http://localhost:${PORT}`);
 			  });
-			  
+			  ```
 				- Em có hỏi gemini về cú pháp, cách để viết 1 api
 				-
 	- Sửa lại file app.js để gửi yêu cầu và nhận phản hồi từ server (em có thêm chức năng nếu bấm nút enter thì nút thêm sẽ được nhấn để việc nhập công việc sẽ tiện hơn)
 		-
-		  
+		  ```javascript
 		  const input = document.getElementById('todo-input');
 		  const addBtn = document.getElementById('add-btn');
 		  const todoList = document.getElementById('todo-list');
@@ -422,23 +422,23 @@
 		  }
 		  
 		  loadTodos();
-		  
+		  ```
 	- Khi làm phần này em có gặp các lỗi
 		- Lỗi đã khởi động server rồi nhưng web vẫn không hoạt động được
 			- Em có tìm hiểu thì biết đó là lỗi cors nghĩa là trang web không được phép kết nối tới server
 			- Và cách khắc phục là viết thêm dòng này vào đầu server để cho biết là tất cả trang web đều được phép kết nối tới server
 				-
-				  
+				  ```javascript
 				  const cors = require('cors');
 				  app.use(cors());
-				  
+				  ```
 			- Còn một vài lỗi mà em không nhớ🥲
 - Level 2: File-based Persistence
 	- Theo em hiểu thì async sẽ cho biết là trong hàm này sẽ có các công việc mà phải chờ kết quả rồi mới được làm tiếp các công việc tiếp theo trong chu trình (await) nhưng trong quá trình chờ thì vẫn có thể thực hiện các chu trình tiếp theo và sau khi công việc đó có kết quả rồi thì quay lại thực hiện nốt các công việc còn lại trong 1 chu trình
 	- Sửa lại file server để đọc và viết dữ liệu file data.JSON (dùng fs để hỗ trợ việc đọc và viết file). Thay vì lưu trên mảng todos thì ta sẽ lưu trên file data.JSON để có thể dễ dàng truy xuất và ghi dữ liệu hơn nữa khi tắt server thì dữ liệu sẽ không bị mất
 		- Hàm try catch ở phần readData sẽ có tác dụng: nếu việc đọc file bị lỗi thì sẽ xóa sạch nội dung trong file và để lại mảng trống sau đó trả về giá trị mảng trống để sau này có thể lưu trữ dữ liệu khác mà không bị lỗi.
 		-
-		  
+		  ```javascript
 		  const express = require('express');
 		  const app = express();
 		  const PORT = 3000;
@@ -527,7 +527,7 @@
 		  app.listen(PORT, () => {
 		      console.log(`Server đang chạy tại: http://localhost:${PORT}`);
 		  });
-		  
+		  ```
 - Level 3: Database Integration
 	- Tải MySQL và thư viện mysql2 và tạo bảng
 		- Em có nhờ gemini để giúp tạo bảng bằng code và ôn lại một số lệnh truy xuất dữ liệu
@@ -539,7 +539,7 @@
 			  );  
 	- File server.js
 		-
-		  
+		  ```javascript
 		  const express = require('express');
 		  const app = express();
 		  const PORT = 3000;
@@ -627,4 +627,4 @@
 		  app.listen(PORT, () => {
 		      console.log(`Server đang chạy tại: http://localhost:${PORT}`);
 		  });
-		  
+		  ```
